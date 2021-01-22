@@ -1,0 +1,7 @@
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(300px, 1fr));
+  font-family: sans-serif;
+  margin: 5rem;
+  grid-gap: 3rem;
+}
