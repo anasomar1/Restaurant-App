@@ -1,7 +1,24 @@
 .products-container {
   display: grid;
   grid-template-columns: repeat(4, minmax(300px, 1fr));
+  justify-content: center;
   font-family: sans-serif;
   margin: 5rem;
   grid-gap: 3rem;
+}
+
+@media screen and (max-width: 1459px) {
+  .products-container {
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+  }
+}
+@media screen and (max-width: 1117px) {
+  .products-container {
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
+  }
+}
+@media screen and (max-width: 780px) {
+  .products-container {
+    grid-template-columns: repeat(1, minmax(300px, 1fr));
+  }
 }

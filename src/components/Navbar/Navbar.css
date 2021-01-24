@@ -72,6 +72,7 @@ ul li a:hover {
 
 .shopping-cart {
   margin: 0 1rem;
+  position: relative;
 }
 
 .items-container {
@@ -96,8 +97,12 @@ ul li a:hover {
   font-size: 1rem;
 }
 
+.added-item h5 {
+  color: rgb(211, 210, 210);
+}
 .added-item h6 {
-  font-size: 1.1rem;
+  margin-top: 2px;
+  font-size: 1rem;
 }
 
 .added-item img {
@@ -108,8 +113,18 @@ ul li a:hover {
 }
 
 .items-count {
-  margin-left: 10px;
+  margin-left: 5px;
+  text-align: center;
   font-weight: bold;
+  width: 20px;
+  max-width: 20px;
+  font-size: 0.8rem;
+  border-radius: 0.2rem;
+  font-style: italic;
+  position: absolute;
+  background: red;
+  padding: 0.1rem 0.2rem;
+  transform: translateY(-10px);
 }
 .remove-btn {
   font-size: 0.8rem;
@@ -123,9 +138,36 @@ ul li a:hover {
 }
 
 .remove-btn:hover {
-  background: red;
+  background: #363636;
 }
 
+.counter {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0.3rem 0;
+}
+
+.counter p {
+  background: rgb(236, 236, 140);
+  padding: 0 0.5rem;
+  color: #121212;
+  margin: 0;
+}
+
+.counter .counter-btn {
+  font-family: inherit;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  font-size: 1rem;
+  padding: 0 0.5rem;
+  background: #ccc;
+  color: #121212;
+}
+.counter .counter-btn:hover {
+  background: #eee;
+}
 @media screen and (max-width: 600px) {
   nav {
     padding: 0 3rem;
@@ -155,5 +197,8 @@ ul li a:hover {
 
   ul.active {
     left: 0;
+  }
+  .shopping-cart {
+    margin-right: 2.5rem;
   }
 }

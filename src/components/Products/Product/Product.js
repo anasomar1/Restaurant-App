@@ -1,7 +1,7 @@
 import React from "react";
 import "./Product.css";
 import { addToCart } from "../../../actions/action";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const Product = ({ food }) => {
   const { description, image, name, price } = food;

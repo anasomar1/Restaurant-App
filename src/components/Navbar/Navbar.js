@@ -2,12 +2,16 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import { useSelector, useDispatch } from "react-redux";
-import { removeFromCart } from "../../actions/action";
+import {
+  removeFromCart,
+  incrementCounter,
+  decrementCounter,
+} from "../../actions/action";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const [toggleCart, setToggleCart] = useState(false);
-  const results = useSelector((addedItems) => addedItems);
+  const foods = useSelector((state) => state.cartReducer);
   const dispatch = useDispatch();
   const handleToggle = () => {
     setToggle(!toggle);
@@ -16,8 +20,8 @@ const Navbar = () => {
     setToggle(false);
   };
 
-  const removeHandler = (result) => {
-    dispatch(removeFromCart(result));
+  const removeHandler = (food) => {
+    dispatch(removeFromCart(food));
   };
 
   return (
@@ -49,7 +53,7 @@ const Navbar = () => {
           onClick={() => setToggleCart(!toggleCart)}
         >
           <i className="fas fa-shopping-cart"></i>
-          <span className="items-count">{results.cartReducer.length}</span>
+          <span className="items-count">{foods.length}</span>
         </div>
 
         <div className="toggle-button">
@@ -63,17 +67,33 @@ const Navbar = () => {
         <div className="items-container">
           <h3>Current Items</h3>
 
-          {results.cartReducer.map((result) => {
-            const { name, price, image } = result;
+          {foods.map((food) => {
+            const { name, price, image, _id, count } = food;
             return (
-              <div className="added-item" key={name}>
+              <div className="added-item" key={_id.$oid}>
                 <img src={image} alt={name} />
                 <div className="item-info">
                   <h5>{name}</h5>
-                  <h6>{price}$</h6>
+                  <h6>{price * count}$</h6>
+                  <div className="counter">
+                    <button
+                      className="counter-btn"
+                      onClick={() => dispatch(incrementCounter(food))}
+                    >
+                      +
+                    </button>
+                    <p>{count}</p>
+
+                    <button
+                      className="counter-btn"
+                      onClick={() => dispatch(decrementCounter(food))}
+                    >
+                      -
+                    </button>
+                  </div>
                   <button
                     className="remove-btn"
-                    onClick={() => removeHandler(result)}
+                    onClick={() => removeHandler(food)}
                   >
                     Remove Item
                   </button>
