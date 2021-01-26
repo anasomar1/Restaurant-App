@@ -13,12 +13,11 @@ const Products = () => {
 
     fetchData();
   }, []);
-
   return (
     <div className="products-container">
-      {foods.map((food) => (
-        <Product food={food} key={food._id.$oid} />
-      ))}
+      {foods.map((food) => {
+        return <Product food={food} key={food._id.$oid} />;
+      })}
     </div>
   );
 };

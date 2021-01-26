@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import { useSelector, useDispatch } from "react-redux";
@@ -6,12 +6,16 @@ import {
   removeFromCart,
   incrementCounter,
   decrementCounter,
+  calculateTotal,
 } from "../../actions/action";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const [toggleCart, setToggleCart] = useState(false);
   const foods = useSelector((state) => state.cartReducer);
+  const total = useSelector((state) => state.totalReducer);
+  console.log(total);
+
   const dispatch = useDispatch();
   const handleToggle = () => {
     setToggle(!toggle);
@@ -23,7 +27,9 @@ const Navbar = () => {
   const removeHandler = (food) => {
     dispatch(removeFromCart(food));
   };
-
+  useEffect(() => {
+    dispatch(calculateTotal(foods));
+  }, [foods, dispatch]);
   return (
     <>
       <nav>
@@ -101,6 +107,16 @@ const Navbar = () => {
               </div>
             );
           })}
+          <h4 className="total">
+            Total Price <p>{total}$</p>
+          </h4>
+          <Link
+            to="/checkout"
+            className="checkout"
+            onClick={() => setToggleCart(false)}
+          >
+            Checkout
+          </Link>
         </div>
       )}
     </>

@@ -3,6 +3,7 @@ import {
   REMOVE_FROM_CART,
   INCREMENT,
   DECREMENT,
+  CALCULATE_TOTAL,
 } from "../constants/constants";
 
 export const addToCart = (data) => {
@@ -27,6 +28,13 @@ export const incrementCounter = (data) => {
 export const decrementCounter = (data) => {
   return {
     type: DECREMENT,
+    data,
+  };
+};
+
+export const calculateTotal = (data) => {
+  return {
+    type: CALCULATE_TOTAL,
     data,
   };
 };
