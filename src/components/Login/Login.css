@@ -1,0 +1,73 @@
+.login,
+.not-logged-in {
+  min-height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.login h3 {
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.login .btn {
+  align-self: center;
+  margin-top: 1rem;
+  background: rgb(204, 66, 24);
+  cursor: pointer;
+}
+
+.information-form {
+  display: flex;
+  margin-top: 1rem;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 2rem;
+  width: 400px;
+  background: rgba(197, 103, 103, 0.034);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.form-group {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+
+  align-items: center;
+  padding-bottom: 1rem;
+}
+
+.form-group input {
+  font-family: inherit;
+  margin-left: 1rem;
+}
+
+.information-form .btn {
+  align-self: center;
+  cursor: pointer;
+}
+
+.logout-button {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  font-family: inherit;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.total-price {
+  align-self: center;
+}

@@ -14,11 +14,11 @@ const Navbar = () => {
   const [toggleCart, setToggleCart] = useState(false);
   const foods = useSelector((state) => state.cartReducer);
   const total = useSelector((state) => state.totalReducer);
-  console.log(total);
 
   const dispatch = useDispatch();
   const handleToggle = () => {
     setToggle(!toggle);
+    setToggleCart(false);
   };
   const boxHandler = () => {
     setToggle(false);
@@ -29,13 +29,15 @@ const Navbar = () => {
   };
   useEffect(() => {
     dispatch(calculateTotal(foods));
-  }, [foods, dispatch]);
+  }, [foods]);
   return (
     <>
       <nav>
         <div className="logo">
-          <h3>Fastelcious</h3>
-          <i className="fas fa-utensils"></i>
+          <Link to="/">
+            <h3>Fastelcious</h3>
+            <i className="fas fa-utensils"></i>
+          </Link>
         </div>
         <ul className={toggle ? "active" : ""}>
           <li>
@@ -56,7 +58,10 @@ const Navbar = () => {
         </ul>
         <div
           className="shopping-cart"
-          onClick={() => setToggleCart(!toggleCart)}
+          onClick={() => {
+            setToggleCart(!toggleCart);
+            setToggle(false);
+          }}
         >
           <i className="fas fa-shopping-cart"></i>
           <span className="items-count">{foods.length}</span>
@@ -111,7 +116,7 @@ const Navbar = () => {
             Total Price <p>{total}$</p>
           </h4>
           <Link
-            to="/checkout"
+            to={total > 0 ? "/checkout" : ""}
             className="checkout"
             onClick={() => setToggleCart(false)}
           >

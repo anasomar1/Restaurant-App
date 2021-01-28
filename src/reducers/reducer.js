@@ -9,7 +9,7 @@ export const cartReducer = (cartItems = [], action) => {
   switch (action.type) {
     case ADD_TO_CART:
       if (cartItems.includes(action.data)) {
-        return cartItems;
+        return [...cartItems];
       } else {
         return [...cartItems, action.data];
       }
