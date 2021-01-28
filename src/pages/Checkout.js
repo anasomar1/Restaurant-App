@@ -6,8 +6,9 @@ const Checkout = ({ history }) => {
   const [user, setUser] = useState({});
 
   useEffect(() => {
+    let unmounted = false;
     auth.onAuthStateChanged(function (user) {
-      if (user) {
+      if (user && !unmounted) {
         const { displayName, email, emailVerified } = user;
         setUser({
           displayName,
@@ -16,6 +17,9 @@ const Checkout = ({ history }) => {
         });
       }
     });
+    return () => {
+      unmounted = true;
+    };
   }, [user]);
 
   return user.emailVerified ? (
